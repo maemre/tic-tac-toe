@@ -7,7 +7,7 @@ public class TicTacToe {
     // Character denoting the current player, 'x' or 'o'
     private char currentPlayer;
     // Size of the board. board is a SIZE × SIZE array
-    private final int SIZE;
+    public final int SIZE;
 
     public TicTacToe(int size) {
         SIZE = size;

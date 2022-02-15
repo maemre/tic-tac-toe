@@ -1,19 +1,19 @@
 package main
 
-import scala.io.StdIn
+import scala.io.{StdIn, AnsiColor => Color}
 
 object Main {
   def printBoard(game : TicTacToe) : Unit = {
-    for (i <- 0 until 3) {
-      for (j <- 0 until 3) {
-        print(s"${game.markAt(i, j)}")
-        if (j != 2) {
+    for (i <- 0 until game.SIZE) {
+      for (j <- 0 until game.SIZE) {
+        print(s"${Color.RED}${Color.GREEN}${game.markAt(i, j)}${Color.RESET}")
+        if (j != game.SIZE - 1) {
         print("|")
         }
       }
       println()
-      if (i != 2) {
-        println("-+-+-")
+      if (i != game.SIZE - 1) {
+        println(("-+" * (game.SIZE - 1)) + "-")
       }
     }
   }
@@ -23,7 +23,7 @@ object Main {
     var game = new TicTacToe(StdIn.readInt);
     while (! game.isGameOver) {
       printBoard(game)
-      println(s"Current player: ${game.getCurrentPlayer}")
+      println(s"\nCurrent player: ${Color.GREEN}${game.getCurrentPlayer}${Color.RESET}")
       print("Which row do you want to play? ")
       val i = StdIn.readInt
       print("Which column do you want to play? ")
@@ -34,7 +34,7 @@ object Main {
     }
 
     printBoard(game)
-    println(s"GAME OVER")
+    println(s"\nGAME OVER")
     println(s"The winner is ${game.getCurrentPlayer}")
   }
 }
