@@ -1,5 +1,3 @@
-package main;
-
 /// Represents a game of Tic-Tac-Toe
 public class TicTacToe {
     // The state of the board
@@ -14,7 +12,7 @@ public class TicTacToe {
         board = new char[SIZE][SIZE];
         currentPlayer = 'x';
         for (int i = 0; i < board.length; ++i) {
-            for (int j = 0; j < board.length; ++j) {
+            for (int j = 0; j < board[i].length; ++j) {
                 board[i][j] = ' ';
             }
         }
@@ -62,6 +60,9 @@ public class TicTacToe {
     }
 
     /// Checks if the game is over
+    ///
+    /// Note: This method has a bug: it does not detect the case when the board
+    /// is full and the game is a tie.
     public boolean isGameOver() {
         for (int i = 0; i < SIZE; ++i) {
             if (isRowComplete(i) || isColumnComplete(i)) {
